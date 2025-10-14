@@ -108,7 +108,7 @@ def lista_chats(page: ft.Page, cambiar_pantalla, sio, user_id_global):
 
     # ✅ Llamada al endpoint correcto del backend Flask móvil
     try:
-        url = f"https://juan200521.pythonanywhere.com/movil/conversaciones/{user_id_global}"
+        url = f"https://lauren-extenuatory-joaquin.ngrok-free.dev/movil/conversaciones/{user_id_global}"
         print(f"📡 Solicitando conversaciones desde: {url}")
         resp = requests.get(url, timeout=5)
         resp.raise_for_status()
@@ -130,9 +130,9 @@ def lista_chats(page: ft.Page, cambiar_pantalla, sio, user_id_global):
 
         # Si la foto existe en el servidor Flask
         if foto:
-            img_src = f"https://juan200521.pythonanywhere.com/{foto}"
+            img_src = f"https://lauren-extenuatory-joaquin.ngrok-free.dev/static/uploads/perfiles/{foto}"
         else:
-            img_src = "https://juan200521.pythonanywhere.com/defecto.png"
+            img_src = "https://lauren-extenuatory-joaquin.ngrok-free.dev/static/uploads/perfiles/defecto.png"
 
         popup_menu = ft.PopupMenuButton(
             icon=ft.Icons.MORE_HORIZ,
@@ -566,7 +566,7 @@ def chat_view(page: ft.Page, cambiar_pantalla, sio, user_id_global, receptor_id,
         if not sio.connected:
             try:
                 print(f"⚠️ Intentando reconectar SocketIO con ID: {user_id}")
-                sio.connect("https://juan200521.pythonanywhere.com", auth={"user_id": user_id})
+                sio.connect("https://lauren-extenuatory-joaquin.ngrok-free.dev", auth={"user_id": user_id})
             except Exception as ex:
                 print(f"❌ Fallo al reconectar SocketIO: {ex}")
                 return

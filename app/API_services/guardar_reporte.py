@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "https://juan200521.pythonanywhere.com"
+BASE_URL = "https://lauren-extenuatory-joaquin.ngrok-free.dev"
 
 def enviar_reporte(token, datos= None ):
     url = f"{BASE_URL}/api/guardar_reporte"

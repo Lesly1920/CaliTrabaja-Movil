@@ -2,7 +2,7 @@ import requests
 
 
 def iniciar_sesion_api(email,password):
-    url = "https://juan200521.pythonanywhere.com/api/iniciar_sesion"
+    url = "https://lauren-extenuatory-joaquin.ngrok-free.dev/api/iniciar_sesion"
 
     data = {"correo": email, "contrasena": password}
 

@@ -1,7 +1,7 @@
 import requests
 
 # Cambia esto por la URL real de tu backend Flask
-BASE_URL = "https://juan200521.pythonanywhere.com"
+BASE_URL = "https://lauren-extenuatory-joaquin.ngrok-free.dev"
 
 # ===========================
 # 🔹 OBTENER CONVERSACIONES

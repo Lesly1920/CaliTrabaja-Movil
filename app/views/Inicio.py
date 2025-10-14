@@ -499,7 +499,9 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
                 usuario_id=usuario_id
             )
 
-        base_url = "https://juan200521.pythonanywhere.com/static/uploads/perfiles/"
+        print("foto_perfil", foto_perfil)
+
+        base_url = "https://lauren-extenuatory-joaquin.ngrok-free.dev/static/uploads/perfiles/"
         if foto_perfil and foto_perfil.lower() != "none":
             img_url = f"{base_url}{foto_perfil}"
         else:

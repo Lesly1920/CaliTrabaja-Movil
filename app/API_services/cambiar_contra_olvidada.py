@@ -1,7 +1,7 @@
 import requests
 
 def cambio_contra_usu(token,data):
-    url = "https://juan200521.pythonanywhere.com/api/restablecer_contraseña_datos"
+    url = " https://lauren-extenuatory-joaquin.ngrok-free.dev/api/restablecer_contraseña_datos"
 
     headers = {
         "Authorization": f"Bearer {token}"

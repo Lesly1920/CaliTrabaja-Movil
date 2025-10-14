@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "https://juan200521.pythonanywhere.com"
+BASE_URL = "https://lauren-extenuatory-joaquin.ngrok-free.dev"
 
 def validar_contrasena_usuario(token, datos=None):
     url = f"{BASE_URL}/api/validar_contrasena_usuario"

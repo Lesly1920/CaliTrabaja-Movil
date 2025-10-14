@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "https://juan200521.pythonanywhere.com"
+BASE_URL = "https://lauren-extenuatory-joaquin.ngrok-free.dev"
 
 def traer_guardados(token):
     url = f"{BASE_URL}/api/mis_guardados"

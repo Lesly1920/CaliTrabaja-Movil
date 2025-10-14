@@ -92,7 +92,7 @@ def inicio_sesion(page: ft.Page, cambiar_pantalla, sio, user_id_global):
                 time.sleep(0.5)  # medio segundo para dar tiempo al backend
 
                 try:
-                    sio.connect("https://juan200521.pythonanywhere.com/", auth={"user_id": user_id})
+                    sio.connect("https://lauren-extenuatory-joaquin.ngrok-free.dev", auth={"user_id": user_id})
                     print(f"✅ SocketIO conectado con ID: {user_id}")
                 except Exception as e:
                     print("❌ No se pudo conectar a SocketIO:", e)

@@ -2,7 +2,7 @@ import requests
 
 
 def inicio_api(token):
-    url = "https://juan200521.pythonanywhere.com/api/"
+    url = "https://lauren-extenuatory-joaquin.ngrok-free.dev/api/"
     headers = {
         "Authorization": f"Bearer {token}"
     }

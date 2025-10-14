@@ -39,7 +39,7 @@ def api_get(page, endpoint=""):
     headers = {}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    resp = requests.get(f"https://juan200521.pythonanywhere.com/api/{endpoint}", headers=headers)
+    resp = requests.get(f"https://lauren-extenuatory-joaquin.ngrok-free.dev/api/{endpoint}", headers=headers)
     return resp.json()
 
 
