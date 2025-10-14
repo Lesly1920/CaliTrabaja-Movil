@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://juan200521.pythonanywhere.com"
 
 def cerrar_sesion_api(token=None):
     url = f"{BASE_URL}/api/cerrar_sesion"

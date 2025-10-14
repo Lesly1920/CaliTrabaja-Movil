@@ -1,7 +1,7 @@
 import requests
 
 def enviar_correo_usu(data):
-    url = "http://127.0.0.1:5000/api/recuperar_contraseña"
+    url = "https://juan200521.pythonanywhere.com/api/recuperar_contraseña"
 
     try:
         response = requests.post(url, json=data if data else {})

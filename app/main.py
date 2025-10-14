@@ -39,7 +39,7 @@ def api_get(page, endpoint=""):
     headers = {}
     if token:
         headers["Authorization"] = f"Bearer {token}"
-    resp = requests.get(f"http://127.0.0.1:5000/api/{endpoint}", headers=headers)
+    resp = requests.get(f"https://juan200521.pythonanywhere.com/api/{endpoint}", headers=headers)
     return resp.json()
 
 
@@ -181,4 +181,4 @@ def main(page: ft.Page):
 
 
 if __name__ == "__main__":
-    ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+    ft.app(target=main, view=ft.AppView.WEB_BROWSER, port=int(os.environ.get("PORT", 8550)))

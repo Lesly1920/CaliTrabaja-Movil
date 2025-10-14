@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://juan200521.pythonanywhere.com"
 
 
 def deshabilitar_cuenta_usu(token, datos=None):

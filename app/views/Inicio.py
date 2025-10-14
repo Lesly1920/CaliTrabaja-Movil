@@ -61,7 +61,7 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
 
         # ✅ 1. Verificar si ya existe una conversación
         try:
-            url = f"http://127.0.0.1:5000/api/conversacion/existe/{user_id_global}/{receptor_id}"
+            url = f"https://juan200521.pythonanywhere.com/api/conversacion/existe/{user_id_global}/{receptor_id}"
             resp = requests.get(url)
             data = resp.json()
             existe_chat = data.get("existe", False)
@@ -499,7 +499,7 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
                 usuario_id=usuario_id
             )
 
-        base_url = "http://localhost:5000/static/uploads/perfiles/"
+        base_url = "https://juan200521.pythonanywhere.com/static/uploads/perfiles/"
         if foto_perfil and foto_perfil.lower() != "none":
             img_url = f"{base_url}{foto_perfil}"
         else:

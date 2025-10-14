@@ -1,6 +1,6 @@
 import requests
 
-BASE_URL = "http://127.0.0.1:5000"
+BASE_URL = "https://juan200521.pythonanywhere.com"
 
 def validar_contrasena_usuario(token, datos=None):
     url = f"{BASE_URL}/api/validar_contrasena_usuario"

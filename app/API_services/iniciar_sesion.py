@@ -2,7 +2,7 @@ import requests
 
 
 def iniciar_sesion_api(email,password):
-    url = "http://127.0.0.1:5000/api/iniciar_sesion"
+    url = "https://juan200521.pythonanywhere.com/api/iniciar_sesion"
 
     data = {"correo": email, "contrasena": password}
 

@@ -24,7 +24,7 @@ class ModalTarjetaCompleta:
 
         es_pantalla_pequena = page and page.width < 480
 
-        base_url = "http://localhost:5000/static/uploads/perfiles/"
+        base_url = "https://juan200521.pythonanywhere.com/static/uploads/perfiles/"
 
         if foto_perfil and foto_perfil.lower() != "none":
             img_url = f"{base_url}{foto_perfil}"

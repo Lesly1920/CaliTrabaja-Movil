@@ -2,7 +2,7 @@ import requests
 
 
 def inicio_api(token):
-    url = "http://127.0.0.1:5000/api/"
+    url = "https://juan200521.pythonanywhere.com/api/"
     headers = {
         "Authorization": f"Bearer {token}"
     }

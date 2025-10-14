@@ -2,7 +2,7 @@ import requests
 
 
 def registrar_usuario_api(nombre,apellido,email,password,confirm):
-    url = "http://127.0.0.1:5000/api/registrar_usuario"
+    url = "https://juan200521.pythonanywhere.com/api/registrar_usuario"
 
     data = {"primer_nombre": nombre, "primer_apellido": apellido, "correo": email, "contrasena": password, "confirmar_contrasena": confirm}
 

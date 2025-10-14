@@ -382,7 +382,7 @@ def publicaciones(page: ft.Page, cambiar_pantalla, origen=None):
                 usuario_id=usuario_id
             )
 
-        base_url = "http://localhost:5000/static/uploads/perfiles/"
+        base_url = "https://juan200521.pythonanywhere.com/static/uploads/perfiles/"
         if foto_perfil and foto_perfil.lower() != "none":
             img_url = f"{base_url}{foto_perfil}"
         else:

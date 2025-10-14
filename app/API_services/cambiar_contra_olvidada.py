@@ -1,7 +1,7 @@
 import requests
 
 def cambio_contra_usu(token,data):
-    url = "http://127.0.0.1:5000/api/restablecer_contraseña_datos"
+    url = "https://juan200521.pythonanywhere.com/api/restablecer_contraseña_datos"
 
     headers = {
         "Authorization": f"Bearer {token}"

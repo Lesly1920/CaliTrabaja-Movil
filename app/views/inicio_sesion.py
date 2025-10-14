@@ -89,11 +89,14 @@ def inicio_sesion(page: ft.Page, cambiar_pantalla, sio, user_id_global):
 
                 print(f"✅ Sesión iniciada con user_id={user_id}")
 
-                # 2. Conectar SocketIO si no está conectado
-                if not sio.connected and user_id is not None:
-                    # Debes asegurar que la URL sea la correcta para tu backend
-                    sio.connect("http://127.0.0.1:5000", auth={"user_id": user_id})
+                time.sleep(0.5)  # medio segundo para dar tiempo al backend
+
+                try:
+                    sio.connect("https://juan200521.pythonanywhere.com/", auth={"user_id": user_id})
                     print(f"✅ SocketIO conectado con ID: {user_id}")
+                except Exception as e:
+                    print("❌ No se pudo conectar a SocketIO:", e)
+
 
             mostrar_snackbar("Inicio de sesión exitoso.", exito=True)
 
