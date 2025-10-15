@@ -518,10 +518,10 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
             content=ft.Column(
                 [
                     ft.CircleAvatar(
-                        foreground_image_src=img_url,
+                        content=ft.Icon(name=ft.Icons.PERSON, size=30, color=ft.Colors.WHITE),
+                        bgcolor=ft.Colors.GREY_500,
                         width=60,
                         height=60,
-                        bgcolor=ft.Colors.GREY_300
                     ),
                     ft.Text(f"COP {costo}/h", size=11, color=TEXT_COLOR, text_align=ft.TextAlign.CENTER),
                     ft.Container(height=3),

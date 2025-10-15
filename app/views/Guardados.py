@@ -216,7 +216,12 @@ def render_guardados(page: ft.Page, cambiar_pantalla=None):
                 [
                     ft.Row(
                         [
-                            ft.CircleAvatar(foreground_image_src=img_url, radius=30, bgcolor=ft.Colors.GREY_300),
+                            ft.CircleAvatar(
+                                content=ft.Icon(name=ft.Icons.PERSON, size=30, color=ft.Colors.WHITE),
+                                bgcolor=ft.Colors.GREY_500,
+                                width=60,
+                                height=60,
+                            ),
                             ft.Column(
                                 [
                                     ft.Row(

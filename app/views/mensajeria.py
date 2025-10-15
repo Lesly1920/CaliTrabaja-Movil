@@ -175,7 +175,12 @@ def lista_chats(page: ft.Page, cambiar_pantalla, sio, user_id_global):
                             ft.Row(
                                 spacing=10,
                                 controls=[
-                                    ft.CircleAvatar(foreground_image_src=img_src, radius=25),
+                                    ft.CircleAvatar(
+                                        content=ft.Icon(name=ft.Icons.PERSON, size=30, color=ft.Colors.WHITE),
+                                        bgcolor=ft.Colors.GREY_500,
+                                        width=60,
+                                        height=60,
+                                    ),
                                     ft.Column(
                                         spacing=2,
                                         alignment=ft.MainAxisAlignment.START,

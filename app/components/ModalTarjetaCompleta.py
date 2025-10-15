@@ -48,9 +48,10 @@ class ModalTarjetaCompleta:
                         alignment=ft.MainAxisAlignment.END
                     ),
                     ft.CircleAvatar(
-                        foreground_image_src=img_url,
-                        radius=36 if es_pantalla_pequena else 38,
-                        bgcolor=ft.Colors.GREY_300
+                        content=ft.Icon(name=ft.Icons.PERSON, size=30, color=ft.Colors.WHITE),
+                        bgcolor=ft.Colors.GREY_500,
+                        width=60,
+                        height=60,
                     ),
                     ft.Text(
                         f"COP {costo}/h",
