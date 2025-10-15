@@ -402,9 +402,17 @@ def chat_view(page: ft.Page, cambiar_pantalla, sio, user_id_global, receptor_id,
             print("❌ Error: Los datos de historial no son una lista de mensajes.", historial_recibido)
             return
 
+
+
         # --- LÓGICA DE PROCESAMIENTO (Fuera del hilo de UI) ---
         mensajes_lista.clear()
         mensajes_map.clear()
+
+        # 🚨 FIX CRÍTICO: Si no hay historial, pero el chat fue marcado como nuevo,
+        # re-insertamos el control 'aviso_chat' antes de redibujar la lista.
+        # Esto reemplaza la lógica inicial eliminada en el paso 1.
+        if not historial_recibido and mostrar_aviso:
+            mensajes_lista.append(aviso_chat)
 
         for m in historial_recibido:
             id_val = m.get("mensaje_id")
@@ -414,15 +422,32 @@ def chat_view(page: ft.Page, cambiar_pantalla, sio, user_id_global, receptor_id,
                 except (ValueError, TypeError):
                     id_val = None
 
-            agregar_burbuja(
-                texto=m.get("texto"),
-                emisor=m.get("emisor"),
-                mensajes=mensajes_column,
-                fecha=m.get("fecha"),
-                usuario_logueado_id=user_id,
-                leido=m.get("leido", False),
-                mensaje_id=id_val
-            )
+                # -------------------------------------------------------------------
+                # ✅ FIX CRÍTICO: Llamada COMPLETA a agregar_burbuja
+                # -------------------------------------------------------------------
+                agregar_burbuja(
+                    texto=m.get("texto"),
+                    emisor=m.get("emisor"),
+                    mensajes=mensajes_column,  # El ListView
+                    fecha=m.get("fecha"),
+                    usuario_logueado_id=user_id,
+                    leido=m.get("leido", False),
+                    mensaje_id=id_val
+                )
+
+        # 🚨 CRÍTICO: Función de Actualización en el Thread Principal 🚨
+        def actualizar_ui():
+            mensajes_column.controls.clear()
+            mensajes_column.controls = mensajes_lista
+            page.update()
+
+            sio.emit("leer_mensajes", {
+                "user_id": user_id,
+                "other_user_id": receptor_id
+            })
+
+        # 💥 EJECUCIÓN ASÍNCRONA PARA FORZAR LA ACTUALIZACIÓN DE UI 💥
+        page.run_thread(actualizar_ui)
 
         # 🚨 CRÍTICO: Función de Actualización en el Thread Principal 🚨
         def actualizar_ui():
@@ -582,6 +607,15 @@ def chat_view(page: ft.Page, cambiar_pantalla, sio, user_id_global, receptor_id,
 
         input_field.value = ""
         input_field.update()
+
+        # -------------------------------------------------------------
+        # ✅ FIX: OCULTAR EL AVISO AL ENVIAR EL PRIMER MENSAJE
+        # -------------------------------------------------------------
+        aviso_container = next((c for c in mensajes_column.controls if c.key == "aviso_chat_inicio"), None)
+        if aviso_container and aviso_container.visible:
+            aviso_container.visible = False
+            aviso_container.update()
+        # -------------------------------------------------------------
 
     enviar_btn = ft.IconButton(icon=ft.Icons.SEND, on_click=enviar_mensaje)
 

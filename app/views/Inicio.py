@@ -13,6 +13,7 @@ from app.components.MenuTarjetasOpciones import menu_opciones
 from app.API_services.traer_publicaciones import traer_publicaciones_usu
 from app.API_services.datos_usuario import obtener_datos
 from app.components.ModalAcceso import mostrar_modal_acceso
+from app.components.chat_navigation import contactar_experto_y_navegar
 
 
 def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=None):
@@ -48,37 +49,6 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
     modal_detalle = ModalTarjetaCompleta()
     page.overlay.append(modal_detalle.dialog)
 
-    def contactar_experto_y_navegar(receptor_id, nombre_experto, categoria):
-        if not usuario_autenticado:
-            mostrar_modal_acceso(page, cambiar_pantalla)
-            return
-
-        if not sio.connected or user_id_global is None:
-            print("❌ ERROR: SocketIO no conectado o user_id desconocido.")
-            return
-
-        import requests
-
-        # ✅ 1. Verificar si ya existe una conversación
-        try:
-            url = f"https://juan200521.pythonanywhere.com/api/conversacion/existe/{user_id_global}/{receptor_id}"
-            resp = requests.get(url)
-            data = resp.json()
-            existe_chat = data.get("existe", False)
-        except Exception as e:
-            print("❌ Error verificando conversación:", e)
-            existe_chat = False
-
-        # ✅ 2. Solo mostrar un aviso en consola (sin enviar mensaje automático)
-        if not existe_chat:
-            print(f"ℹ No existe conversación previa con {nombre_experto}. Se abrirá el chat vacío.")
-        else:
-            print(f"✅ Ya existe conversación con {nombre_experto}.")
-
-        mostrar_aviso = not existe_chat
-
-        # ✅ 3. Abrir el chat
-        cambiar_pantalla("chat", receptor_id=receptor_id, receptor_nombre=nombre_experto, mostrar_aviso=mostrar_aviso)
 
     def abrir_modal_detalle(foto_perfil, nombre, profesion, descripcion, costo, calificacion):
         print("CLICK -> abrir_modal_detalle:", nombre)  # <-- mira la consola donde corres Flet
@@ -588,7 +558,7 @@ def pantalla_inicio(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=No
                 # 🔹 Verifica sesión antes de actuar
                 on_click=lambda e: mostrar_modal_acceso(page, cambiar_pantalla)
                 if not token
-                else contactar_experto_y_navegar(usuario_id, nombre, categoria)
+                else contactar_experto_y_navegar(page, cambiar_pantalla, sio, user_id_global, usuario_id, nombre, categoria)
             ),
             bottom=8,
             left=10,

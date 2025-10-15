@@ -7,7 +7,7 @@ from app.components.ModalTarjetaCompleta import ModalTarjetaCompleta
 from app.components.MenuTarjetasOpciones import menu_opciones
 from app.API_services.traer_publicaciones import traer_publicaciones_usu
 from app.components.ModalAcceso import mostrar_modal_acceso
-
+from app.components.chat_navigation import contactar_experto_y_navegar
 
 def custom_expansion(page, title, controls_list):
     toggle_icon = ft.Icon(name=ft.Icons.KEYBOARD_ARROW_DOWN, color="#3EAEB1")
@@ -57,7 +57,7 @@ def custom_expansion(page, title, controls_list):
         spacing=8
     )
 
-def publicaciones(page: ft.Page, cambiar_pantalla, origen=None):
+def publicaciones(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=None, origen=None):
     # ---------------- CONFIGURACIÓN GENERAL ----------------
     page.fonts = {
         "Oswald": "https://raw.githubusercontent.com/google/fonts/main/ofl/oswald/Oswald%5Bwght%5D.ttf"
@@ -467,6 +467,7 @@ def publicaciones(page: ft.Page, cambiar_pantalla, origen=None):
         )
 
         # Botón Contactar experto fijo abajo
+        # Botón Contactar experto fijo abajo
         boton_contactar = ft.Container(
             content=ft.OutlinedButton(
                 text="Contactar experto",
@@ -478,10 +479,20 @@ def publicaciones(page: ft.Page, cambiar_pantalla, origen=None):
                     padding=ft.padding.symmetric(horizontal=15, vertical=8),
                     text_style=ft.TextStyle(size=13, weight=ft.FontWeight.W_600, font_family="Oswald"),
                 ),
-                # 🔹 Verifica sesión antes de actuar
-                on_click=lambda e: mostrar_modal_acceso(page, cambiar_pantalla)
-                if not token
-                else print(f"Contactando a {nombre}")
+                # ---------------------------------------------------------------------------------
+                # ✅ NUEVA LÓGICA DE CONTACTO Y NAVEGACIÓN
+                # ---------------------------------------------------------------------------------
+                on_click=lambda e: contactar_experto_y_navegar(
+                    page,
+                    cambiar_pantalla,
+                    sio,
+                    user_id_global,
+                    usuario_id,  # ID del experto (receptor_id)
+                    nombre,  # Nombre del experto (receptor_nombre)
+                    profesion  # Profesión/subcategoría (categoría)
+                ) if token
+                else mostrar_modal_acceso(page, cambiar_pantalla)
+                # ---------------------------------------------------------------------------------
             ),
             bottom=8,
             left=10,

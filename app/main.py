@@ -67,7 +67,7 @@ def main(page: ft.Page):
     # ----------------------
     # Cambiar entre pantallas - VERSIÓN CORREGIDA
     # ----------------------
-    def cambiar_pantalla(destino: str, origen=None, receptor_id=None, receptor_nombre=None):
+    def cambiar_pantalla(destino: str, origen=None, receptor_id=None, receptor_nombre=None, mostrar_aviso=False):
         global user_id_global  # Necesario si actualizas el ID aquí
 
         user_id_global = page.session.get("user_id")
@@ -121,7 +121,7 @@ def main(page: ft.Page):
             render_guardados(page, cambiar_pantalla)
 
         elif destino == "publicaciones":
-            publicaciones(page, cambiar_pantalla, origen=origen)
+            publicaciones(page, cambiar_pantalla, sio=sio, user_id_global=user_id_global, origen=origen)
 
         elif destino == "login":
             inicio_sesion(page, cambiar_pantalla, sio, user_id_global)
