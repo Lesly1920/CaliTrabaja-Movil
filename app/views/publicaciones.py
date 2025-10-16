@@ -501,7 +501,7 @@ def publicaciones(page: ft.Page, cambiar_pantalla, sio=None, user_id_global=None
 
         # Ajuste dinámico de ancho de tarjeta
         tarjeta_width = (
-            page.width * 0.42 if page.width <= 480 else 179
+            page.width * 0.47 if page.width <= 480 else 179
         )
 
         return ft.Container(
